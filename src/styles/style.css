@@ -127,7 +127,7 @@ body {
   margin-left: 24px;
   margin-right: 24px;
   max-width: 327px;
-  margin-top: -20px;
+  margin-top: 20px;
 }
 @media (min-width: 768px) {
   .card-wrapper {
