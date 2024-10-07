@@ -1,19 +1,22 @@
-const buttons = document.querySelectorAll('.card__button--number')
 const submit = document.querySelector('.card__button-submit')
 const card = document.querySelector('.card')
-
-const buttonsContainer = document.querySelector('.card__button-group')
+const radioButtonsContainer = document.querySelector('.card__radio-group')
 const thanksCard = document.querySelector('.thank-you')
 const rating = document.querySelector('.thank-you__rating--number')
 
-let choose = 0
+let choose = {
+  choose: 0,
+}
 let activeButton = null;
 
 function handleChoose(evt) {
-  if (evt.target.classList.contains('card__button--number')) {
+  if (evt.target.classList.contains('card__radio-new')) {
     evt.preventDefault()
-    choose = evt.target.textContent
-    console.log(choose);
+    if (choose.value !== evt.target.textContent) {
+      choose.value = evt.target.textContent
+      console.log(choose);
+    }
+
     if (activeButton !== null) {
       activeButton.classList.remove('active')
     }
@@ -24,14 +27,14 @@ function handleChoose(evt) {
 
 function renderScore(evt) {
   evt.preventDefault()
-  if (choose === 0) {
+  if (!choose.value) {
     alert('Please choose a rating')
   } else {
     thanksCard.classList.remove('hidden')
     card.classList.add('hidden')
-    rating.textContent = choose
+    rating.textContent = choose.value
   }
 }
 
-buttonsContainer.addEventListener('click', handleChoose)
+radioButtonsContainer.addEventListener('click', handleChoose)
 submit.addEventListener('click', renderScore)
