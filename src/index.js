@@ -5,24 +5,11 @@ const thanksCard = document.querySelector('.thank-you')
 const rating = document.querySelector('.thank-you__rating--number')
 
 let choose = {
-  choose: 0,
+  value: 0,
 }
-let activeButton = null;
 
-function handleChoose(evt) {
-  if (evt.target.classList.contains('card__radio-new')) {
-    evt.preventDefault()
-    if (choose.value !== evt.target.textContent) {
-      choose.value = evt.target.textContent
-      console.log(choose);
-    }
-
-    if (activeButton !== null) {
-      activeButton.classList.remove('active')
-    }
-    activeButton = evt.target
-    activeButton.classList.add('active')
-  }
+function handleChoose() {
+  choose.value = document.querySelector('input[name="number"]:checked').value
 }
 
 function renderScore(evt) {
@@ -36,5 +23,5 @@ function renderScore(evt) {
   }
 }
 
-radioButtonsContainer.addEventListener('click', handleChoose)
+radioButtonsContainer.addEventListener('change', handleChoose)
 submit.addEventListener('click', renderScore)
